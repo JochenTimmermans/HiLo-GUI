@@ -22,9 +22,13 @@ public class GuessingGame extends JFrame {
 			message = guess + " is too low. Try again.";
 		else if (guess > theNumber)
 			message = guess + " is too high. Try again.";
-		else
+		else {
 			message = guess + " is correct. You win!";
+			newGame();
+		}
 		lblOutput.setText(message);
+		txtGuess.requestFocus();
+		txtGuess.selectAll();
 	}
 	
 	public void newGame() {
@@ -51,6 +55,11 @@ public class GuessingGame extends JFrame {
 		txtGuess.setBounds(290, 55, 59, 19);
 		getContentPane().add(txtGuess);
 		txtGuess.setColumns(10);
+		txtGuess.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				checkGuess();
+			}
+		});
 		
 		JButton btnGuess = new JButton("Guess!");
 		btnGuess.addActionListener(new ActionListener() {
